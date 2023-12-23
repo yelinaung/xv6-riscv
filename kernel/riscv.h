@@ -20,6 +20,10 @@ r_mhartid()
 static inline uint64
 r_mstatus()
 {
+  // inline assembly to read the machine status (mstatus) register
+  // using 'csrr' (control and status register)
+  // and return the value in x.
+  // used in start.S
   uint64 x;
   asm volatile("csrr %0, mstatus" : "=r" (x) );
   return x;
